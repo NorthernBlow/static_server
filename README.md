@@ -7,6 +7,12 @@ export SSH_PUBLIC_KEY="$(cat $HOME/.ssh/id_rsa.pub)"
 и собрать контейнер:
 
 ```shell
-docker-compose up --build
+docker-compose up --build -d
+```
+
+После чего можно запустить плейбук:
+
+```shell
+ansible-playbook playbook.yml --diff
 ```
 

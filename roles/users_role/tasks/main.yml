@@ -1,0 +1,36 @@
+---
+
+- name: Ensure custom groups is present
+  group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ custom_groups }}"
+
+- name: Manage users
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
+    password: "{{ item.password }}"
+    state: "{{ item.state }}"
+    groups: "{{ item.groups | join(',') }}"
+  loop: "{{ users }}"
+  when: item.state != 'absent'
+
+- name: Ensure user's ssh directory exists
+  file:
+    path: "/home/{{ item.name }}/.ssh"
+    state: directory
+    owner: "{{ item.name }}"
+    mode: '0700'
+  loop: "{{ users }}"
+  when: item.ssh_key is defined and item.state == 'present'
+
+- name: Add public SSH key for users
+  copy:
+    content: "{{ item.ssh_key }}"
+    dest: "/home/{{ item.name }}/.ssh/authorized_keys"
+    owner: "{{ item.name }}"
+    mode: '0600'
+  loop: "{{ users }}"
+  when: item.ssh_key is defined and item.state == 'present'
+

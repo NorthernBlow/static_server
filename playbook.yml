@@ -1,0 +1,6 @@
+---
+- name: Configure users and groups on Docker container
+  hosts: all
+  roles:
+    - roles/users_role
+

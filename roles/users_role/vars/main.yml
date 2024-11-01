@@ -1,0 +1,25 @@
+custom_groups:
+  - developers
+  - admins
+
+users:
+  - name: "user1"
+    shell: "/bin/bash"
+    state: "present"
+    ssh_key: "ssh-rsa ... user1@example.com"
+    password: "password123" # захешировать для безопасности
+    groups: ["developers"]
+
+  - name: "user2"
+    shell: "/bin/zsh"
+    state: "present"
+    ssh_key: "ssh-rsa AAAAB3Nz... user2@example.com"
+    password: "password456" # тоже захешировать
+    groups: ["admins"]
+
+  - name: "user3"
+    shell: "/bin/bash"
+    state: "absent"
+    password: ""
+    groups: []
+
