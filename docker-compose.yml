@@ -1,22 +1,16 @@
 ---
 
-version: '2.29.7'
-
 services:
   ubuntu_ssh:
     build: .
     container_name: ubuntu_ansible
-    secrets:
-      - host_ssh_key
+    environment:
+      - SSH_PUBLIC_KEY=${SSH_PUBLIC_KEY}
     ports:
       - "2233:23"
     networks:
       - ssh_net
     restart: unless-stopped
-
-secrets:
-  host_ssh_key:
-    file: .secrets/authorized_keys
 
 networks:
   ssh_net:
