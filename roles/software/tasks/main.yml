@@ -1,0 +1,16 @@
+---
+- name: install python3-apt
+  package:
+    name: python3-apt
+    state: present
+
+- name: Update && upgrade
+  apt:
+    update_cache: yes
+    upgrade: yes
+    state: latest
+
+- name: Install software
+  package:
+    name: " {{ software }}"
+    state: present

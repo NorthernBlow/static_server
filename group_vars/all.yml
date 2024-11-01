@@ -23,3 +23,9 @@ users:
     password: ""
     groups: []
 
+
+software:
+  - htop
+  - ncdu
+  - git
+  - nano

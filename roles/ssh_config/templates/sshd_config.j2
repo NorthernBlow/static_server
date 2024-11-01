@@ -1,0 +1,12 @@
+Port 23
+
+PermitRootLogin no
+
+PermitEmptyPasswords no
+
+LogLevel VERBOSE
+
+X11Forwarding no
+
+{{ sshd_extra_settings | default('') }}
+

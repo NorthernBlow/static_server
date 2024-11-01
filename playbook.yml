@@ -4,3 +4,17 @@
   roles:
     - roles/users_role
 
+- name: Install ZSH
+  hosts: all
+  roles:
+    - roles/install_zsh
+
+- name: Apply SSH configuration
+  hosts: all
+  roles:
+    - ssh_config
+
+- name: install software
+  hosts: all
+  roles: 
+    - software 
