@@ -11,6 +11,7 @@
     state: latest
 
 - name: Install software
-  package:
-    name: " {{ software }}"
-    state: present
+  apt:
+    update_cache: yes
+    name: "{{ software }}"
+    state: latest

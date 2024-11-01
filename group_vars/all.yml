@@ -29,3 +29,6 @@ software:
   - ncdu
   - git
   - nano
+
+server_name: "localhost"
+root: "/var/www/html"

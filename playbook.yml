@@ -17,4 +17,9 @@
 - name: install software
   hosts: all
   roles: 
-    - software 
+    - software
+
+- name: install and launch nginx webserver
+  hosts: all
+  roles:
+    - nginx
