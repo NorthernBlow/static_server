@@ -1,17 +1,17 @@
 ---
 - name: install python3-apt
-  package:
+  ansible.builtin.package:
     name: python3-apt
     state: present
 
 - name: Update && upgrade
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     upgrade: yes
     state: latest
 
 - name: Install software
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     name: "{{ software }}"
     state: latest

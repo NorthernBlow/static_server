@@ -1,13 +1,13 @@
 ---
 
 - name: Ensure custom groups is present
-  group:
+  ansible.builtin.group:
     name: "{{ item }}"
     state: present
   loop: "{{ custom_groups }}"
 
 - name: Manage users
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     shell: "{{ item.shell }}"
     password: "{{ item.password }}"
@@ -17,7 +17,7 @@
   when: item.state != 'absent'
 
 - name: Ensure user's ssh directory exists
-  file:
+  ansible.builtin.file:
     path: "/home/{{ item.name }}/.ssh"
     state: directory
     owner: "{{ item.name }}"
@@ -26,7 +26,7 @@
   when: item.ssh_key is defined and item.state == 'present'
 
 - name: Add public SSH key for users
-  copy:
+  ansible.builtin.copy:
     content: "{{ item.ssh_key }}"
     dest: "/home/{{ item.name }}/.ssh/authorized_keys"
     owner: "{{ item.name }}"
